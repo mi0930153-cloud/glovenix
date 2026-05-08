@@ -1,0 +1,381 @@
+
+<style>
+  .rv-wrap{font-family:var(--font-sans);max-width:700px;padding:32px 0 16px}
+  .rv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+  .rv-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:18px}
+  .rv-card.featured{border:2px solid #D85A30}
+  .rv-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
+  .rv-stars{color:#f5a623;font-size:14px;margin-bottom:6px;letter-spacing:1px}
+  .rv-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px}
+  .rv-body{font-size:12px;color:var(--color-text-secondary);line-height:1.7;margin:0}
+  .rv-footer{font-size:11px;color:var(--color-text-tertiary);margin-top:12px;padding-top:10px;border-top:0.5px solid var(--color-border-tertiary)}
+  .rv-date{font-size:11px;color:var(--color-text-tertiary);margin-top:6px}
+  .rv-badge-verified{background:#e8f7f0;color:#0F6E56;font-size:10px;font-weight:500;padding:2px 8px;border-radius:100px;display:inline-block}
+  .rv-badge-top{background:#FFF0E8;color:#D85A30;font-size:11px;font-weight:500;padding:3px 12px;border-radius:100px;display:inline-block;margin-bottom:12px}
+  .rv-name{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+  .rv-meta{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+  .rv-summary{display:flex;gap:24px;align-items:center;background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:20px;flex-wrap:wrap;margin-bottom:20px}
+  .rv-big-rating{text-align:center;min-width:100px}
+  .rv-big-num{font-size:52px;font-weight:500;line-height:1;color:var(--color-text-primary)}
+  .rv-big-stars{color:#f5a623;font-size:22px;margin:6px 0;letter-spacing:2px}
+  .rv-divider{width:1px;background:var(--color-border-secondary);align-self:stretch;min-height:80px;flex-shrink:0}
+  .rv-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .rv-bar-track{flex:1;height:8px;background:var(--color-background-tertiary);border-radius:4px;overflow:hidden}
+  .rv-bar-fill{height:8px;background:#f5a623;border-radius:4px}
+  .rv-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .rv-tag{background:var(--color-background-secondary);color:var(--color-text-secondary);font-size:12px;padding:6px 14px;border-radius:100px;border:0.5px solid var(--color-border-secondary);display:inline-block}
+  .rv-load-btn{width:100%;padding:13px;background:none;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);font-size:14px;color:var(--color-text-secondary);cursor:pointer;margin-bottom:16px}
+  .rv-more-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:480px){.rv-grid,.rv-more-grid{grid-template-columns:1fr!important}.rv-summary{flex-direction:column}.rv-divider{width:100%;height:1px;min-height:unset;align-self:auto}}
+</style>
+
+<div class="rv-wrap">
+  <h2 style="font-size:24px;font-weight:500;margin-bottom:4px;color:var(--color-text-primary)">What our customers say</h2>
+  <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:24px">Real reviews from verified buyers across the United States</p>
+
+  <div class="rv-summary">
+    <div class="rv-big-rating">
+      <div class="rv-big-num">4.8</div>
+      <div class="rv-big-stars">★★★★★</div>
+      <div style="font-size:12px;color:var(--color-text-secondary)">Based on 1,247 reviews</div>
+      <div style="margin-top:10px"><span style="background:#e8f7f0;color:#0F6E56;font-size:11px;font-weight:500;padding:4px 12px;border-radius:100px;display:inline-block">97% recommend</span></div>
+    </div>
+    <div class="rv-divider"></div>
+    <div style="flex:1;min-width:200px">
+      <div class="rv-bar-row"><span style="font-size:12px;color:var(--color-text-secondary);width:22px;text-align:right;flex-shrink:0">5★</span><div class="rv-bar-track"><div class="rv-bar-fill" style="width:78%"></div></div><span style="font-size:12px;color:var(--color-text-secondary);width:32px;flex-shrink:0">78%</span></div>
+      <div class="rv-bar-row"><span style="font-size:12px;color:var(--color-text-secondary);width:22px;text-align:right;flex-shrink:0">4★</span><div class="rv-bar-track"><div class="rv-bar-fill" style="width:14%"></div></div><span style="font-size:12px;color:var(--color-text-secondary);width:32px;flex-shrink:0">14%</span></div>
+      <div class="rv-bar-row"><span style="font-size:12px;color:var(--color-text-secondary);width:22px;text-align:right;flex-shrink:0">3★</span><div class="rv-bar-track"><div class="rv-bar-fill" style="width:5%"></div></div><span style="font-size:12px;color:var(--color-text-secondary);width:32px;flex-shrink:0">5%</span></div>
+      <div class="rv-bar-row"><span style="font-size:12px;color:var(--color-text-secondary);width:22px;text-align:right;flex-shrink:0">2★</span><div class="rv-bar-track"><div class="rv-bar-fill" style="width:2%"></div></div><span style="font-size:12px;color:var(--color-text-secondary);width:32px;flex-shrink:0">2%</span></div>
+      <div class="rv-bar-row"><span style="font-size:12px;color:var(--color-text-secondary);width:22px;text-align:right;flex-shrink:0">1★</span><div class="rv-bar-track"><div class="rv-bar-fill" style="width:1%"></div></div><span style="font-size:12px;color:var(--color-text-secondary);width:32px;flex-shrink:0">1%</span></div>
+    </div>
+  </div>
+
+  <div class="rv-tags">
+    <span class="rv-tag">Pain relief</span>
+    <span class="rv-tag">Hot compression</span>
+    <span class="rv-tag">Travel friendly</span>
+    <span class="rv-tag">Office use</span>
+    <span class="rv-tag">Long battery</span>
+    <span class="rv-tag">Easy to use</span>
+  </div>
+
+  <div class="rv-grid">
+    <div class="rv-card featured">
+      <span class="rv-badge-top">Top review</span>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FFF0E8;color:#993C1D">SR</div>
+        <div><div class="rv-name">Sarah R. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 2 weeks ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Finally — real relief for my neck pain!"</div>
+      <p class="rv-body">I've been suffering from chronic neck pain for years and tried everything. This massager gives me instant relief every single time. The hot compression is incredible — I use it every evening and wake up feeling brand new.</p>
+      <div class="rv-footer">142 people found this helpful</div>
+      <div class="rv-date">April 22, 2026</div>
+    </div>
+
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#E8F0FF;color:#185FA5">JM</div>
+        <div><div class="rv-name">James M. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 1 month ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Perfect for the office — hands-free bliss"</div>
+      <p class="rv-body">I wear this at my desk during calls and nobody even notices. Whisper-quiet and the relief is real. Shoulder stiffness completely gone after one 20-minute session. Best purchase of the year.</p>
+      <div class="rv-footer">98 people found this helpful</div>
+      <div class="rv-date">April 5, 2026</div>
+    </div>
+
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#E8F7F0;color:#0F6E56">AL</div>
+        <div><div class="rv-name">Amanda L. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 3 weeks ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"My #1 travel essential now"</div>
+      <p class="rv-body">I travel every week for work and this fits perfectly in my carry-on. USB charging is so convenient — I charge it on the flight. After long trips this is the first thing I reach for. Melts tension immediately.</p>
+      <div class="rv-footer">76 people found this helpful</div>
+      <div class="rv-date">April 15, 2026</div>
+    </div>
+
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#F0EFFF;color:#534AB7">DK</div>
+        <div><div class="rv-name">David K. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 5 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★☆</div>
+      <div class="rv-title">"Solid quality, my physio approved it"</div>
+      <p class="rv-body">Solid build quality and the heat function works beautifully. I was skeptical but results speak for themselves. My physiotherapist asked about it and called it a great daily maintenance tool.</p>
+      <div class="rv-footer">54 people found this helpful</div>
+      <div class="rv-date">May 3, 2026</div>
+    </div>
+  </div>
+
+  <button class="rv-load-btn" id="loadBtn" onclick="document.getElementById('moreReviews').style.display='grid';this.style.display='none'">View all 1,247 reviews ↓</button>
+
+  <div class="rv-more-grid" id="moreReviews" style="display:none">
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FAEEDA;color:#854F0B">MB</div>
+        <div><div class="rv-name">Michelle B. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 2 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Life-changing for migraines"</div>
+      <p class="rv-body">I get tension headaches almost daily. This massager has cut them down dramatically. The heat setting is perfect — not too hot, just right. I keep one at home and one at work.</p>
+      <div class="rv-footer">43 people found this helpful</div>
+      <div class="rv-date">May 6, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#E6F1FB;color:#0C447C">TC</div>
+        <div><div class="rv-name">Tom C. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 1 week ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Works better than any massage chair"</div>
+      <p class="rv-body">Spent thousands on a massage chair that collected dust. This $40 device does more for my neck than the chair ever did. Regret not buying it sooner. My whole family uses it now.</p>
+      <div class="rv-footer">61 people found this helpful</div>
+      <div class="rv-date">May 1, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FBEAF0;color:#72243E">LP</div>
+        <div><div class="rv-name">Lisa P. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 10 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Great gift for my mom"</div>
+      <p class="rv-body">Bought this for my mom who has arthritis in her neck. She calls me every other day just to tell me how much she loves it. The heat helps her so much. Ordering one for myself now!</p>
+      <div class="rv-footer">38 people found this helpful</div>
+      <div class="rv-date">April 28, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#EAF3DE;color:#3B6D11">RH</div>
+        <div><div class="rv-name">Ryan H. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 3 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Athletes need this"</div>
+      <p class="rv-body">I'm a runner and neck/shoulder tightness is always an issue after long runs. This thing is incredible for post-workout recovery. The deep kneading gets into muscles I didn't even know were tight.</p>
+      <div class="rv-footer">29 people found this helpful</div>
+      <div class="rv-date">May 5, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FFF0E8;color:#993C1D">KW</div>
+        <div><div class="rv-name">Karen W. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 2 weeks ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Used it at 30,000 feet!"</div>
+      <p class="rv-body">Long-haul flights destroy my neck. I used this on a 6-hour flight and other passengers kept asking where I got it. Silent enough to use without headphones. Absolute game-changer for frequent flyers.</p>
+      <div class="rv-footer">55 people found this helpful</div>
+      <div class="rv-date">April 20, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#E8F7F0;color:#085041">CN</div>
+        <div><div class="rv-name">Cindy N. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 6 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Doctor recommended, and I agree"</div>
+      <p class="rv-body">My doctor suggested getting a neck massager for my stress-related stiffness. After trying three others, this one blew them all out of the water. The combination of heat and vibration is unbeatable.</p>
+      <div class="rv-footer">33 people found this helpful</div>
+      <div class="rv-date">May 2, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#F0EFFF;color:#3C3489">MT</div>
+        <div><div class="rv-name">Mark T. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 3 weeks ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Battery lasts forever"</div>
+      <p class="rv-body">Charged it once, used it for 5 days before needing to recharge. That alone makes this worth it. No cord fuss, completely wireless. Take it anywhere. The nodes are strong and really dig into tight spots.</p>
+      <div class="rv-footer">41 people found this helpful</div>
+      <div class="rv-date">April 17, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FCEBEB;color:#A32D2D">JD</div>
+        <div><div class="rv-name">Jennifer D. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 4 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Goodbye tension headaches"</div>
+      <p class="rv-body">I have scoliosis and neck pain has been my reality for 15 years. This massager targets exactly the right spots. 15 minutes before bed and I sleep through the night for the first time in years. Truly remarkable.</p>
+      <div class="rv-footer">67 people found this helpful</div>
+      <div class="rv-date">May 4, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FAEEDA;color:#633806">PG</div>
+        <div><div class="rv-name">Paul G. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 2 weeks ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"My coworkers all bought one"</div>
+      <p class="rv-body">Brought it to the office once. By lunchtime, five coworkers had ordered their own. The proof is in the product — when you feel it working, you immediately know it's worth every penny. Zero regrets.</p>
+      <div class="rv-footer">52 people found this helpful</div>
+      <div class="rv-date">April 24, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FCEBEB;color:#791F1F">DL</div>
+        <div><div class="rv-name">Derek L. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 1 month ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Night shift nurses — listen up"</div>
+      <p class="rv-body">12-hour hospital shifts leave my neck completely wrecked. This is the only thing that gives me real relief without having to take anything. I use it between shifts and it resets me completely. Can't recommend enough.</p>
+      <div class="rv-footer">63 people found this helpful</div>
+      <div class="rv-date">April 6, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FFF0E8;color:#D85A30">HM</div>
+        <div><div class="rv-name">Hannah M. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 8 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Bought two — one for each car"</div>
+      <p class="rv-body">I commute 2 hours daily and this is my road trip companion. Plugs into the car USB, works perfectly. My husband loved mine so much I ordered a second one for his car. We're obsessed.</p>
+      <div class="rv-footer">39 people found this helpful</div>
+      <div class="rv-date">April 30, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#E8F0FF;color:#0C447C">WA</div>
+        <div><div class="rv-name">William A. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 2 weeks ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Senior citizen approved"</div>
+      <p class="rv-body">I'm 68 and have been dealing with neck stiffness for over a decade. Simple controls, does exactly what it promises, and the warmth feels amazing on old aching muscles. My son ordered it for me and I'm so grateful.</p>
+      <div class="rv-footer">58 people found this helpful</div>
+      <div class="rv-date">April 22, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#E8F7F0;color:#0F6E56">OT</div>
+        <div><div class="rv-name">Olivia T. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 4 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Best stress relief after work"</div>
+      <p class="rv-body">Teaching 30 kids all day leaves me tense from head to toe. This massager is the first thing I reach for when I get home. Ten minutes and the whole day melts away. Every teacher needs this.</p>
+      <div class="rv-footer">31 people found this helpful</div>
+      <div class="rv-date">May 4, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FBEAF0;color:#993556">NR</div>
+        <div><div class="rv-name">Nicole R. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 5 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Single mom essential"</div>
+      <p class="rv-body">Between work and kids I have zero time for a real massage. This is my 15-minute self-care moment every night. My neck and shoulders have never felt better. Worth every single dollar. Highly recommend!</p>
+      <div class="rv-footer">44 people found this helpful</div>
+      <div class="rv-date">May 3, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#F0EFFF;color:#534AB7">CS</div>
+        <div><div class="rv-name">Carlos S. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 6 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Construction worker approved"</div>
+      <p class="rv-body">Physical labor wrecks your body. My neck and traps were constantly in pain. Started using this every night and the difference is night and day. Recovery time cut in half. Telling all my coworkers about it.</p>
+      <div class="rv-footer">48 people found this helpful</div>
+      <div class="rv-date">May 2, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FAEEDA;color:#854F0B">EV</div>
+        <div><div class="rv-name">Emily V. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 3 weeks ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Stress begone!"</div>
+      <p class="rv-body">I hold all my stress in my neck and shoulders. This massager targets that exact area with precision. The heat plus massage combo is incredible — like having a personal masseuse at home 24/7. Total lifesaver.</p>
+      <div class="rv-footer">27 people found this helpful</div>
+      <div class="rv-date">April 18, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#E6F1FB;color:#185FA5">SM</div>
+        <div><div class="rv-name">Sandra M. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 1 week ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Anxiety relief I didn't expect"</div>
+      <p class="rv-body">I bought this for neck pain but the biggest surprise was how it reduced my anxiety. The warmth and rhythmic massage is incredibly calming. I use it during stressful workdays and it genuinely helps me decompress.</p>
+      <div class="rv-footer">56 people found this helpful</div>
+      <div class="rv-date">May 1, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#F0EFFF;color:#26215C">RN</div>
+        <div><div class="rv-name">Robert N. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 3 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Truck driver's best friend"</div>
+      <p class="rv-body">I drive 10+ hours daily and my neck is constantly stiff. This plugs right into my truck's USB port and works perfectly during breaks. It's become part of my daily routine. My lower back might need one too!</p>
+      <div class="rv-footer">49 people found this helpful</div>
+      <div class="rv-date">May 5, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FAEEDA;color:#412402">AW</div>
+        <div><div class="rv-name">Anna W. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 2 weeks ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Pregnancy neck pain solved"</div>
+      <p class="rv-body">Third trimester neck pain is no joke. My doctor approved this as a safe option for relief and it has been an absolute godsend. The gentle heat combined with the massage gives me the only real relief I've found.</p>
+      <div class="rv-footer">60 people found this helpful</div>
+      <div class="rv-date">April 21, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FCEBEB;color:#A32D2D">CH</div>
+        <div><div class="rv-name">Chris H. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 6 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Simple, effective, no fuss"</div>
+      <p class="rv-body">I've owned complicated gadgets that never got used. This one I use every single day. Three buttons, does exactly what it says, and works brilliantly. Sometimes simple really is better. 100% satisfied customer.</p>
+      <div class="rv-footer">26 people found this helpful</div>
+      <div class="rv-date">May 2, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FBEAF0;color:#72243E">PH</div>
+        <div><div class="rv-name">Patricia H. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 9 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Canceled my monthly massage appointment"</div>
+      <p class="rv-body">I was spending $80/month on professional massages for neck relief. This device does the job just as well at home for a fraction of the cost. Paid for itself in the first month. My masseuse might not be happy but I am!</p>
+      <div class="rv-footer">71 people found this helpful</div>
+      <div class="rv-date">April 29, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#FFF0E8;color:#993C1D">TY</div>
+        <div><div class="rv-name">Tina Y. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 5 days ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Finally sleeping through the night"</div>
+      <p class="rv-body">Neck pain would wake me up at 3am every single night. Started using this for 20 minutes before bed and the difference was immediate. First full night of sleep in months happened on day two. I cried, honestly.</p>
+      <div class="rv-footer">82 people found this helpful</div>
+      <div class="rv-date">May 3, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#EAF3DE;color:#27500A">IO</div>
+        <div><div class="rv-name">Ivan O. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 4 weeks ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"My whole family uses it"</div>
+      <p class="rv-body">Got this for myself, but now it lives in the living room and everyone takes turns. My wife, my teenage kids, even my visiting in-laws all love it. We might need to buy a second one at this rate. Absolutely worth it.</p>
+      <div class="rv-footer">45 people found this helpful</div>
+      <div class="rv-date">April 10, 2026</div>
+    </div>
+    <div class="rv-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="rv-avatar" style="background:#E8F0FF;color:#185FA5">JB</div>
+        <div><div class="rv-name">Jason B. 🇺🇸</div><div class="rv-meta"><span class="rv-badge-verified">Verified Buyer</span> · 2 weeks ago</div></div>
+      </div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-title">"Gym bag essential"</div>
+      <p class="rv-body">I hit the gym 5 days a week and this is always in my bag. Post-workout neck and trap tightness is brutal — this massager loosens everything up in under 15 minutes. Recovery has never been this fast or convenient.</p>
+      <div class="rv-footer">37 people found this helpful</div>
+      <div class="rv-date">April 23, 2026</div>
+    </div>
+  </div>
+</div>
