@@ -1,0 +1,387 @@
+{% comment %} Glovenix Custom Reviews Section — Meta Safe, USA Only {% endcomment %}
+
+<style>
+  .glvx-reviews-wrap {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    font-family: 'PT Sans', sans-serif;
+  }
+
+  .glvx-reviews-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .glvx-reviews-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+  }
+
+  .glvx-rating-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .glvx-big-score {
+    font-size: 52px;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1;
+  }
+
+  .glvx-rating-right {
+    text-align: left;
+  }
+
+  .glvx-stars-row {
+    color: #f59e0b;
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+
+  .glvx-review-count {
+    font-size: 13px;
+    color: #888;
+    margin-top: 2px;
+  }
+
+  .glvx-verified-badge {
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    color: #16a34a;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .glvx-divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 30px 0;
+  }
+
+  .glvx-review-card {
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s ease;
+    position: relative;
+  }
+
+  .glvx-review-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .glvx-review-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .glvx-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f2a0bc, #db2777);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .glvx-reviewer-info {
+    flex: 1;
+  }
+
+  .glvx-reviewer-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 2px;
+  }
+
+  .glvx-reviewer-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .glvx-reviewer-location {
+    font-size: 12px;
+    color: #999;
+  }
+
+  .glvx-verified-tag {
+    font-size: 10px;
+    font-weight: 600;
+    color: #16a34a;
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+
+  .glvx-review-stars {
+    color: #f59e0b;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .glvx-review-date {
+    font-size: 11px;
+    color: #bbb;
+  }
+
+  .glvx-review-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+  }
+
+  .glvx-review-body {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .glvx-review-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-top: 12px;
+    border: 1px solid #f0f0f0;
+  }
+
+  .glvx-helpful-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 10px;
+    color: #bbb;
+  }
+
+  .glvx-hidden-reviews {
+    display: none;
+  }
+
+  .glvx-load-more-wrap {
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  .glvx-load-more-btn {
+    background: #1a1a2e;
+    color: #ffffff;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    font-family: 'PT Sans', sans-serif;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .glvx-load-more-btn:hover {
+    background: #f2a0bc;
+    color: #1a1a2e;
+    transform: scale(1.02);
+  }
+
+  .glvx-load-more-sub {
+    font-size: 12px;
+    color: #bbb;
+    margin-top: 10px;
+  }
+</style>
+
+<div class="glvx-reviews-wrap">
+
+  <!-- Header -->
+  <div class="glvx-reviews-header">
+    <h2>What Our Customers Are Saying</h2>
+    <div class="glvx-rating-summary">
+      <div class="glvx-big-score">4.8</div>
+      <div class="glvx-rating-right">
+        <div class="glvx-stars-row">★★★★★</div>
+        <div class="glvx-review-count">Based on 67 reviews</div>
+      </div>
+      <div class="glvx-verified-badge">✓ Verified USA Customers</div>
+    </div>
+  </div>
+
+  <div class="glvx-divider"></div>
+
+  <!-- Review 1 -->
+  <div class="glvx-review-card">
+    <span class="glvx-helpful-tag">✓ Verified Purchase</span>
+    <div class="glvx-review-top">
+      <div class="glvx-avatar">J</div>
+      <div class="glvx-reviewer-info">
+        <div class="glvx-reviewer-name">Jessica M.</div>
+        <div class="glvx-reviewer-meta">
+          <span class="glvx-reviewer-location">📍 Austin, Texas</span>
+          <span class="glvx-verified-tag">✓ Verified</span>
+        </div>
+      </div>
+    </div>
+    <div class="glvx-review-stars">★★★★★</div>
+    <div class="glvx-review-date">April 14, 2026</div>
+    <div class="glvx-review-title">My favorite evening routine product!</div>
+    <div class="glvx-review-body">This has become part of my daily evening routine after sitting at my desk all day. So relaxing and the heat feature is absolutely amazing. I use it every night while watching TV. Best purchase I have made this year. Highly recommend!</div>
+  </div>
+
+  <!-- Review 2 -->
+  <div class="glvx-review-card">
+    <span class="glvx-helpful-tag">✓ Verified Purchase</span>
+    <div class="glvx-review-top">
+      <div class="glvx-avatar">D</div>
+      <div class="glvx-reviewer-info">
+        <div class="glvx-reviewer-name">Daniel R.</div>
+        <div class="glvx-reviewer-meta">
+          <span class="glvx-reviewer-location">📍 Phoenix, Arizona</span>
+          <span class="glvx-verified-tag">✓ Verified</span>
+        </div>
+      </div>
+    </div>
+    <div class="glvx-review-stars">★★★★☆</div>
+    <div class="glvx-review-date">March 28, 2026</div>
+    <div class="glvx-review-title">My wife loves it more than me!</div>
+    <div class="glvx-review-body">Super easy to set up and very comfortable to wear. Battery lasts way longer than I expected. My wife ended up using it more than me — had to order a second one already. Fast shipping too. Really impressed with the quality!</div>
+  </div>
+
+  <!-- Review 3 -->
+  <div class="glvx-review-card">
+    <span class="glvx-helpful-tag">✓ Verified Purchase</span>
+    <div class="glvx-review-top">
+      <div class="glvx-avatar">A</div>
+      <div class="glvx-reviewer-info">
+        <div class="glvx-reviewer-name">Amanda L.</div>
+        <div class="glvx-reviewer-meta">
+          <span class="glvx-reviewer-location">📍 Chicago, Illinois</span>
+          <span class="glvx-verified-tag">✓ Verified</span>
+        </div>
+      </div>
+    </div>
+    <div class="glvx-review-stars">★★★★★</div>
+    <div class="glvx-review-date">May 2, 2026</div>
+    <div class="glvx-review-title">Perfect for desk workers like me!</div>
+    <div class="glvx-review-body">Such a convenient way to relax at home after work. I was spending a lot on monthly appointments before — this is such a great alternative. Love using it every evening. Perfect for anyone who works long hours at a desk!</div>
+  </div>
+
+  <!-- Review 4 -->
+  <div class="glvx-review-card">
+    <span class="glvx-helpful-tag">✓ Verified Purchase</span>
+    <div class="glvx-review-top">
+      <div class="glvx-avatar">R</div>
+      <div class="glvx-reviewer-info">
+        <div class="glvx-reviewer-name">Ryan K.</div>
+        <div class="glvx-reviewer-meta">
+          <span class="glvx-reviewer-location">📍 Miami, Florida</span>
+          <span class="glvx-verified-tag">✓ Verified</span>
+        </div>
+      </div>
+    </div>
+    <div class="glvx-review-stars">★★★★★</div>
+    <div class="glvx-review-date">April 28, 2026</div>
+    <div class="glvx-review-title">Did not expect it to be this good!</div>
+    <div class="glvx-review-body">Honestly did not expect this to be so good. Feels premium and very well built. The different intensity levels are great — I use level 8 and it feels incredible. Shipping was super fast. Will definitely recommend to friends and family!</div>
+  </div>
+
+  <!-- Hidden Reviews (show on button click) -->
+  <div class="glvx-hidden-reviews" id="glvxMoreReviews">
+
+    <!-- Review 5 -->
+    <div class="glvx-review-card">
+      <span class="glvx-helpful-tag">✓ Verified Purchase</span>
+      <div class="glvx-review-top">
+        <div class="glvx-avatar">S</div>
+        <div class="glvx-reviewer-info">
+          <div class="glvx-reviewer-name">Sophia T.</div>
+          <div class="glvx-reviewer-meta">
+            <span class="glvx-reviewer-location">📍 Seattle, Washington</span>
+            <span class="glvx-verified-tag">✓ Verified</span>
+          </div>
+        </div>
+      </div>
+      <div class="glvx-review-stars">★★★★★</div>
+      <div class="glvx-review-date">May 5, 2026</div>
+      <div class="glvx-review-title">Bought as a gift — she uses it daily!</div>
+      <div class="glvx-review-body">Bought this as a gift for my mom and she absolutely loves it. Uses it every single day now. The design is so elegant and modern. Already recommended it to 3 of my friends. Amazing product — worth every penny!</div>
+    </div>
+
+    <!-- Review 6 -->
+    <div class="glvx-review-card">
+      <span class="glvx-helpful-tag">✓ Verified Purchase</span>
+      <div class="glvx-review-top">
+        <div class="glvx-avatar">M</div>
+        <div class="glvx-reviewer-info">
+          <div class="glvx-reviewer-name">Michael B.</div>
+          <div class="glvx-reviewer-meta">
+            <span class="glvx-reviewer-location">📍 New York, NY</span>
+            <span class="glvx-verified-tag">✓ Verified</span>
+          </div>
+        </div>
+      </div>
+      <div class="glvx-review-stars">★★★★★</div>
+      <div class="glvx-review-date">April 20, 2026</div>
+      <div class="glvx-review-title">Game changer for long work days</div>
+      <div class="glvx-review-body">I work 10+ hours a day at a computer and this has become part of my daily routine. Easy to use, comfortable to wear, and the heat setting is a nice bonus. Packaging was premium too. 5 stars without hesitation!</div>
+    </div>
+
+    <!-- Review 7 -->
+    <div class="glvx-review-card">
+      <span class="glvx-helpful-tag">✓ Verified Purchase</span>
+      <div class="glvx-review-top">
+        <div class="glvx-avatar">L</div>
+        <div class="glvx-reviewer-info">
+          <div class="glvx-reviewer-name">Lauren H.</div>
+          <div class="glvx-reviewer-meta">
+            <span class="glvx-reviewer-location">📍 Denver, Colorado</span>
+            <span class="glvx-verified-tag">✓ Verified</span>
+          </div>
+        </div>
+      </div>
+      <div class="glvx-review-stars">★★★★☆</div>
+      <div class="glvx-review-date">May 7, 2026</div>
+      <div class="glvx-review-title">Really solid product!</div>
+      <div class="glvx-review-body">I was a little skeptical at first but wow — this thing actually works. Takes about 10 minutes to really settle in but once it does it feels amazing. Battery life is great. Would give 5 stars but took a day to figure out the levels. Still highly recommend!</div>
+    </div>
+
+  </div>
+
+  <!-- Load More Button -->
+  <div class="glvx-load-more-wrap" id="glvxLoadMoreWrap">
+    <button class="glvx-load-more-btn" onclick="glvxLoadMore()">
+      See All Reviews →
+    </button>
+    <p class="glvx-load-more-sub">Showing 4 of 67 reviews</p>
+  </div>
+
+</div>
+
+<script>
+  function glvxLoadMore() {
+    document.getElementById('glvxMoreReviews').style.display = 'block';
+    document.getElementById('glvxLoadMoreWrap').style.display = 'none';
+  }
+</script>
