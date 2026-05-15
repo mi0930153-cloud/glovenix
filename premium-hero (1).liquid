@@ -1,0 +1,1018 @@
+{% doc %}
+  @prompt Premium Hero Section with working countdown timer including Days
+{% enddoc %}
+
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+
+.ai-premium-hero-{{ ai_gen_id }} {
+  display: block;
+  width: 100%;
+}
+
+.ai-hero-container-{{ ai_gen_id }} {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: {{ block.settings.min_height }}px;
+  padding: {{ block.settings.padding_vertical }}px {{ block.settings.padding_horizontal }}px;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+  background-color: {{ block.settings.background_color }};
+  width: {{ block.settings.desktop_width_percent }}%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.ai-hero-container-{{ ai_gen_id }}::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, {{ block.settings.glow_color }}33, {{ block.settings.background_color }});
+  left: -150px;
+  top: 50px;
+  z-index: 0;
+  opacity: {{ block.settings.glow_opacity }};
+}
+
+.ai-hero-left-{{ ai_gen_id }} {
+  flex: 1;
+  z-index: 2;
+}
+
+.ai-badge-{{ ai_gen_id }} {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid {{ block.settings.badge_border_color }};
+  color: {{ block.settings.badge_text_color }};
+  border-radius: 50px;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.ai-dot-{{ ai_gen_id }} {
+  width: 8px;
+  height: 8px;
+  background: {{ block.settings.badge_dot_color }};
+  border-radius: 50%;
+  animation: ai-pulse-{{ ai_gen_id }} 1.5s infinite;
+}
+
+@keyframes ai-pulse-{{ ai_gen_id }} {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.ai-headline-{{ ai_gen_id }} {
+  font-size: {{ block.settings.heading_size }}px;
+  font-weight: {{ block.settings.heading_weight }};
+  margin: 0;
+  line-height: 1.1;
+  color: {{ block.settings.heading_color }};
+  letter-spacing: {{ block.settings.heading_letter_spacing }}px;
+}
+
+.ai-gradient-text-{{ ai_gen_id }} {
+  background: linear-gradient(90deg, {{ block.settings.gradient_color_1 }}, {{ block.settings.gradient_color_2 }});
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ai-subtext-{{ ai_gen_id }} {
+  color: {{ block.settings.subtext_color }};
+  margin-top: 10px;
+  font-size: {{ block.settings.subtext_size }}px;
+  line-height: 1.6;
+}
+
+.ai-price-box-{{ ai_gen_id }} {
+  margin-top: 20px;
+}
+
+.ai-old-price-{{ ai_gen_id }} {
+  text-decoration: line-through;
+  color: {{ block.settings.old_price_color }};
+  font-size: {{ block.settings.old_price_size }}px;
+}
+
+.ai-new-price-{{ ai_gen_id }} {
+  font-size: {{ block.settings.new_price_size }}px;
+  font-weight: {{ block.settings.new_price_weight }};
+  color: {{ block.settings.new_price_color }};
+}
+
+.ai-discount-{{ ai_gen_id }} {
+  display: inline-block;
+  padding: 4px 10px;
+  background: linear-gradient(90deg, {{ block.settings.gradient_color_1 }}, {{ block.settings.gradient_color_2 }});
+  border-radius: 20px;
+  font-size: 12px;
+  margin-left: 10px;
+  color: {{ block.settings.discount_text_color }};
+}
+
+.ai-timer-{{ ai_gen_id }} {
+  margin-top: 20px;
+}
+
+.ai-timer-label-{{ ai_gen_id }} {
+  font-size: 12px;
+  color: {{ block.settings.timer_label_color }};
+}
+
+.ai-timer-box-{{ ai_gen_id }} {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.ai-time-{{ ai_gen_id }} {
+  background: {{ block.settings.timer_bg_color }};
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 60px;
+}
+
+.ai-time-{{ ai_gen_id }} span {
+  font-size: 18px;
+  display: block;
+  color: {{ block.settings.timer_number_color }};
+  font-variant-numeric: tabular-nums;
+}
+
+.ai-time-{{ ai_gen_id }} small {
+  color: {{ block.settings.timer_text_color }};
+  font-size: 11px;
+}
+
+.ai-buttons-{{ ai_gen_id }} {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.ai-btn-{{ ai_gen_id }} {
+  padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+  border-radius: 50px;
+  font-weight: {{ block.settings.button_font_weight }};
+  font-size: {{ block.settings.button_font_size }}px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.ai-primary-{{ ai_gen_id }} {
+  background: linear-gradient(90deg, {{ block.settings.gradient_color_1 }}, {{ block.settings.gradient_color_2 }});
+  border: none;
+  color: {{ block.settings.primary_button_text_color }};
+}
+
+.ai-primary-{{ ai_gen_id }}:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.ai-ghost-{{ ai_gen_id }} {
+  border: 1px solid {{ block.settings.secondary_button_border_color }};
+  background: transparent;
+  color: {{ block.settings.secondary_button_text_color }};
+}
+
+.ai-ghost-{{ ai_gen_id }}:hover {
+  opacity: 0.7;
+}
+
+.ai-trust-{{ ai_gen_id }} {
+  font-size: 12px;
+  color: {{ block.settings.trust_text_color }};
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+.ai-hero-right-{{ ai_gen_id }} {
+  flex: 1;
+  z-index: 2;
+  position: relative;
+}
+
+.ai-frame-{{ ai_gen_id }} {
+  border: 2px dashed {{ block.settings.image_border_color }};
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/5;
+  background: {{ block.settings.image_frame_bg }};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ai-frame-{{ ai_gen_id }} img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ai-upload-placeholder-{{ ai_gen_id }} {
+  color: {{ block.settings.placeholder_text_color }};
+}
+
+.ai-upload-placeholder-{{ ai_gen_id }} svg {
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.ai-upload-icon-{{ ai_gen_id }} {
+  width: 40px;
+  height: 40px;
+  background: {{ block.settings.gradient_color_1 }};
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-card-{{ ai_gen_id }} {
+  position: absolute;
+  background: {{ block.settings.floating_card_bg }};
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  color: {{ block.settings.floating_card_text }};
+}
+
+.ai-top-right-{{ ai_gen_id }} {
+  top: 10px;
+  right: 10px;
+}
+
+.ai-bottom-right-{{ ai_gen_id }} {
+  bottom: 10px;
+  right: 10px;
+}
+
+@media (max-width: 768px) {
+  .ai-hero-container-{{ ai_gen_id }} {
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .ai-hero-right-{{ ai_gen_id }} {
+    order: 1;
+    width: 100%;
+  }
+
+  .ai-hero-left-{{ ai_gen_id }} {
+    order: 2;
+  }
+
+  .ai-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size | times: 0.7 }}px;
+  }
+
+  .ai-timer-box-{{ ai_gen_id }} {
+    gap: 6px;
+  }
+
+  .ai-time-{{ ai_gen_id }} {
+    min-width: 52px;
+    padding: 8px 10px;
+  }
+}
+
+{% endstyle %}
+
+<ai-premium-hero-{{ ai_gen_id }} class="ai-premium-hero-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-hero-container-{{ ai_gen_id }}">
+
+    <div class="ai-hero-left-{{ ai_gen_id }}">
+
+      {% if block.settings.show_badge %}
+        <div class="ai-badge-{{ ai_gen_id }}">
+          <div class="ai-dot-{{ ai_gen_id }}"></div>
+          {{ block.settings.badge_text }}
+        </div>
+      {% endif %}
+
+      <h1 class="ai-headline-{{ ai_gen_id }}">
+        {{ block.settings.heading_part_1 }}
+        {% if block.settings.heading_part_2 != blank %}
+          <span class="ai-gradient-text-{{ ai_gen_id }}">{{ block.settings.heading_part_2 }}</span>
+        {% endif %}
+        {{ block.settings.heading_part_3 }}
+      </h1>
+
+      {% if block.settings.subtext != blank %}
+        <div class="ai-subtext-{{ ai_gen_id }}">
+          {{ block.settings.subtext }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_pricing %}
+        <div class="ai-price-box-{{ ai_gen_id }}">
+          {% if block.settings.old_price != blank %}
+            <div class="ai-old-price-{{ ai_gen_id }}">{{ block.settings.old_price }}</div>
+          {% endif %}
+          <div class="ai-new-price-{{ ai_gen_id }}">
+            {{ block.settings.new_price }}
+            {% if block.settings.discount_badge != blank %}
+              <span class="ai-discount-{{ ai_gen_id }}">{{ block.settings.discount_badge }}</span>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_timer %}
+        <div class="ai-timer-{{ ai_gen_id }}">
+          <small class="ai-timer-label-{{ ai_gen_id }}">{{ block.settings.timer_label }}</small>
+          <div class="ai-timer-box-{{ ai_gen_id }}">
+
+            <!-- ✅ DAYS BOX - FIXED -->
+            <div class="ai-time-{{ ai_gen_id }}">
+              <span data-timer-days>00</span>
+              <small>Days</small>
+            </div>
+
+            <div class="ai-time-{{ ai_gen_id }}">
+              <span data-timer-hours>00</span>
+              <small>{{ block.settings.hours_label }}</small>
+            </div>
+
+            <div class="ai-time-{{ ai_gen_id }}">
+              <span data-timer-minutes>00</span>
+              <small>{{ block.settings.minutes_label }}</small>
+            </div>
+
+            <div class="ai-time-{{ ai_gen_id }}">
+              <span data-timer-seconds>00</span>
+              <small>{{ block.settings.seconds_label }}</small>
+            </div>
+
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="ai-buttons-{{ ai_gen_id }}">
+        {% if block.settings.primary_button_text != blank %}
+          <a href="{{ block.settings.primary_button_link }}" class="ai-btn-{{ ai_gen_id }} ai-primary-{{ ai_gen_id }}">
+            {{ block.settings.primary_button_text }}
+          </a>
+        {% endif %}
+        {% if block.settings.secondary_button_text != blank %}
+          <a href="{{ block.settings.secondary_button_link }}" class="ai-btn-{{ ai_gen_id }} ai-ghost-{{ ai_gen_id }}">
+            {{ block.settings.secondary_button_text }}
+          </a>
+        {% endif %}
+      </div>
+
+      {% if block.settings.trust_text != blank %}
+        <div class="ai-trust-{{ ai_gen_id }}">
+          {{ block.settings.trust_text }}
+        </div>
+      {% endif %}
+
+    </div>
+
+    <div class="ai-hero-right-{{ ai_gen_id }}">
+      <div class="ai-frame-{{ ai_gen_id }}">
+
+        {% if block.settings.hero_image %}
+          <img
+            src="{{ block.settings.hero_image | image_url: width: 1000 }}"
+            alt="{{ block.settings.hero_image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.hero_image.width }}"
+            height="{{ block.settings.hero_image.height }}"
+          >
+        {% else %}
+          <div class="ai-upload-placeholder-{{ ai_gen_id }}">
+            {{ 'hero-apparel-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.floating_card_1_text != blank %}
+          <div class="ai-card-{{ ai_gen_id }} ai-top-right-{{ ai_gen_id }}">
+            {{ block.settings.floating_card_1_text }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.floating_card_2_text != blank %}
+          <div class="ai-card-{{ ai_gen_id }} ai-bottom-right-{{ ai_gen_id }}">
+            {{ block.settings.floating_card_2_text }}
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </div>
+</ai-premium-hero-{{ ai_gen_id }}>
+
+<script>
+(function() {
+
+  class AiPremiumHero{{ ai_gen_id }} extends HTMLElement {
+
+    constructor() {
+      super();
+      this.timerEnabled = {{ block.settings.show_timer | json }};
+      this.endDate = null;
+      this.timerInterval = null;
+    }
+
+    connectedCallback() {
+      if (this.timerEnabled) {
+        this.initTimer();
+      }
+    }
+
+    initTimer() {
+      const endDateStr = '{{ block.settings.timer_end_date }}';
+      const endTimeStr = '{{ block.settings.timer_end_time }}';
+
+      if (!endDateStr || !endTimeStr) {
+        return;
+      }
+
+      this.endDate = new Date(endDateStr + 'T' + endTimeStr);
+
+      if (isNaN(this.endDate.getTime())) {
+        return;
+      }
+
+      this.updateTimer();
+      this.timerInterval = setInterval(() => this.updateTimer(), 1000);
+    }
+
+    updateTimer() {
+      const now = new Date().getTime();
+      const distance = this.endDate.getTime() - now;
+
+      if (distance < 0) {
+        clearInterval(this.timerInterval);
+        this.setTimerValues(0, 0, 0, 0);
+        return;
+      }
+
+      /* ✅ FIXED - Days calculation added */
+      const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      this.setTimerValues(days, hours, minutes, seconds);
+    }
+
+    /* ✅ FIXED - Days parameter added */
+    setTimerValues(days, hours, minutes, seconds) {
+      const daysEl    = this.querySelector('[data-timer-days]');
+      const hoursEl   = this.querySelector('[data-timer-hours]');
+      const minutesEl = this.querySelector('[data-timer-minutes]');
+      const secondsEl = this.querySelector('[data-timer-seconds]');
+
+      if (daysEl)    daysEl.textContent    = String(days).padStart(2, '0');
+      if (hoursEl)   hoursEl.textContent   = String(hours).padStart(2, '0');
+      if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+      if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    disconnectedCallback() {
+      if (this.timerInterval) {
+        clearInterval(this.timerInterval);
+      }
+    }
+  }
+
+  customElements.define('ai-premium-hero-{{ ai_gen_id }}', AiPremiumHero{{ ai_gen_id }});
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Premium hero",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Minimum height",
+      "min": 400,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "default": 520
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical padding",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Limited Time Offer"
+    },
+    {
+      "type": "color",
+      "id": "badge_border_color",
+      "label": "Border color",
+      "default": "#C9A84C"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Text color",
+      "default": "#C9A84C"
+    },
+    {
+      "type": "color",
+      "id": "badge_dot_color",
+      "label": "Dot color",
+      "default": "#C9A84C"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_part_1",
+      "label": "Heading part 1",
+      "default": "Helps support"
+    },
+    {
+      "type": "text",
+      "id": "heading_part_2",
+      "label": "Heading part 2 (gradient)",
+      "default": "daily comfort and"
+    },
+    {
+      "type": "text",
+      "id": "heading_part_3",
+      "label": "Heading part 3",
+      "default": "relaxation"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "900"
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "label": "Letter spacing",
+      "min": -2,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px",
+      "default": -0.8
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Subtext"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "🔥 Designed to help you relax and unwind after long days."
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "label": "Subtext size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext color",
+      "default": "#F9F6F1"
+    },
+    {
+      "type": "header",
+      "content": "Pricing"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pricing",
+      "label": "Show pricing",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "old_price",
+      "label": "Old price",
+      "default": "$99.99"
+    },
+    {
+      "type": "range",
+      "id": "old_price_size",
+      "label": "Old price size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "old_price_color",
+      "label": "Old price color",
+      "default": "#FFFFFF59"
+    },
+    {
+      "type": "text",
+      "id": "new_price",
+      "label": "New price",
+      "default": "$49.99"
+    },
+    {
+      "type": "range",
+      "id": "new_price_size",
+      "label": "New price size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "new_price_weight",
+      "label": "New price weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "900"
+    },
+    {
+      "type": "color",
+      "id": "new_price_color",
+      "label": "New price color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "discount_badge",
+      "label": "Discount text",
+      "default": "50% OFF"
+    },
+    {
+      "type": "color",
+      "id": "discount_text_color",
+      "label": "Discount text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Timer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_timer",
+      "label": "Show countdown timer",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "timer_label",
+      "label": "Timer label",
+      "default": "Offer expires in"
+    },
+    {
+      "type": "text",
+      "id": "timer_end_date",
+      "label": "End date (YYYY-MM-DD)",
+      "default": "2025-12-31"
+    },
+    {
+      "type": "text",
+      "id": "timer_end_time",
+      "label": "End time (HH:MM:SS)",
+      "default": "23:59:59"
+    },
+    {
+      "type": "text",
+      "id": "hours_label",
+      "label": "Hours label",
+      "default": "Hours"
+    },
+    {
+      "type": "text",
+      "id": "minutes_label",
+      "label": "Minutes label",
+      "default": "Mins"
+    },
+    {
+      "type": "text",
+      "id": "seconds_label",
+      "label": "Secs label",
+      "default": "Secs"
+    },
+    {
+      "type": "color",
+      "id": "timer_label_color",
+      "label": "Label color",
+      "default": "#FFFFFF80"
+    },
+    {
+      "type": "color",
+      "id": "timer_bg_color",
+      "label": "Timer background",
+      "default": "#FFFFFF0D"
+    },
+    {
+      "type": "color",
+      "id": "timer_number_color",
+      "label": "Number color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "timer_text_color",
+      "label": "Text color",
+      "default": "#FFFFFF66"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary button text",
+      "default": "Get Started Now"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "color",
+      "id": "primary_button_text_color",
+      "label": "Primary button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary button text",
+      "default": ""
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_border_color",
+      "label": "Secondary button border",
+      "default": "#FFFFFF66"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_text_color",
+      "label": "Secondary button text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Button vertical padding",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Button horizontal padding",
+      "min": 14,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button font size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button font weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Trust message"
+    },
+    {
+      "type": "textarea",
+      "id": "trust_text",
+      "label": "Trust text",
+      "default": "✓ No credit card required · ✓ 30-day money-back guarantee · ✓ Free Shipping · ✓ Secure Checkout 🔒"
+    },
+    {
+      "type": "color",
+      "id": "trust_text_color",
+      "label": "Trust text color",
+      "default": "#FFFFFF66"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "color",
+      "id": "image_border_color",
+      "label": "Frame border color",
+      "default": "#C9A84C"
+    },
+    {
+      "type": "color",
+      "id": "image_frame_bg",
+      "label": "Frame background",
+      "default": "#C9A84C1A"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_text_color",
+      "label": "Placeholder text color",
+      "default": "#C9A84C"
+    },
+    {
+      "type": "header",
+      "content": "Floating cards"
+    },
+    {
+      "type": "text",
+      "id": "floating_card_1_text",
+      "label": "Top card text",
+      "default": "⭐ 4.7/5 Rating"
+    },
+    {
+      "type": "text",
+      "id": "floating_card_2_text",
+      "label": "Bottom card text",
+      "default": "🔥 Trending"
+    },
+    {
+      "type": "color",
+      "id": "floating_card_bg",
+      "label": "Card background",
+      "default": "#FFFFFF0F"
+    },
+    {
+      "type": "color",
+      "id": "floating_card_text",
+      "label": "Card text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#0D1B2A"
+    },
+    {
+      "type": "color",
+      "id": "glow_color",
+      "label": "Glow color",
+      "default": "#C9A84C"
+    },
+    {
+      "type": "range",
+      "id": "glow_opacity",
+      "label": "Glow opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient color 1",
+      "default": "#C9A84C"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient color 2",
+      "default": "#E8C96D"
+    }
+  ]
+}
+{% endschema %}
